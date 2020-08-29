@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b0d72233c9cd49f2b94eea2f9e258842 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_b0d72233c9cd49f2b94eea2f9e258842" ></div>
+        
+</body>
+<script>    
+    
+            var map_b0d72233c9cd49f2b94eea2f9e258842 = L.map(
+                "map_b0d72233c9cd49f2b94eea2f9e258842",
+                {
+                    center: [52.4667601926523, 13.3091647731717],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 15,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_09442faa8c52438688aaf1628c0fcd9c = L.tileLayer(
+                "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",
+                {"attribution": "Map tiles by \u003ca href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            var circle_marker_c704538138104480a965e3cff0ff428a = L.circleMarker(
+                [52.548835541248, 13.4003668365479],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_c704538138104480a965e3cff0ff428a.bindTooltip(
+                `<div>
+                     Schwedter Steg
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_4faa80414df44c8abf0ea28aaeafedc0 = L.circleMarker(
+                [52.51393215939899, 13.41783460946187],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_4faa80414df44c8abf0ea28aaeafedc0.bindTooltip(
+                `<div>
+                     Jannowitzbrücke Nord
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_c78492e0862e46f5b82e64ff94aafb79 = L.circleMarker(
+                [52.5139429938464, 13.417611074205],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_c78492e0862e46f5b82e64ff94aafb79.bindTooltip(
+                `<div>
+                     Jannowitzbrücke Süd
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_3b814defb7b14509b19c45218e7f4f26 = L.circleMarker(
+                [52.488135580706334, 13.33311990737359],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_3b814defb7b14509b19c45218e7f4f26.bindTooltip(
+                `<div>
+                     Prinzregentenstraße
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_166a8ee870244b49a13dfb85172a1fa5 = L.circleMarker(
+                [52.4919379605113, 13.373472267973568],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_166a8ee870244b49a13dfb85172a1fa5.bindTooltip(
+                `<div>
+                     Yorckstraße Ost
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_3d183ce339b64390a901af99d4e2067a = L.circleMarker(
+                [52.49228, 13.37321],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_3d183ce339b64390a901af99d4e2067a.bindTooltip(
+                `<div>
+                     Yorkstraße West
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_34c1290cf7f449cc98e16d57c0a00c3b = L.circleMarker(
+                [52.488117, 13.369785],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_34c1290cf7f449cc98e16d57c0a00c3b.bindTooltip(
+                `<div>
+                     Monumentenstraße
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_d737a0b18ea14c458928a4fe7a2a348a = L.circleMarker(
+                [52.55819, 13.3649435],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_d737a0b18ea14c458928a4fe7a2a348a.bindTooltip(
+                `<div>
+                     Markstraße
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_5ca2e0857a2246278918b766b68a5d09 = L.circleMarker(
+                [52.5271768961928, 13.3720158872605],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_5ca2e0857a2246278918b766b68a5d09.bindTooltip(
+                `<div>
+                     Invalidenstraße Ost
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_410812d6662e431ba6dd245ca4251767 = L.circleMarker(
+                [52.5276860197938, 13.3731048641205],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_410812d6662e431ba6dd245ca4251767.bindTooltip(
+                `<div>
+                     Invalidenstraße West
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_d30ff3ba6e6a42eb9ee3123e8920e0b4 = L.circleMarker(
+                [52.5011988679576, 13.445060485363],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_d30ff3ba6e6a42eb9ee3123e8920e0b4.bindTooltip(
+                `<div>
+                     Oberbaumbrücke Ost
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_a305aee90ff140fabadaf8db5e20a8e9 = L.circleMarker(
+                [52.5012756085914, 13.444867366314],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_a305aee90ff140fabadaf8db5e20a8e9.bindTooltip(
+                `<div>
+                     Oberbaumbrücke West
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_afa71482b94d42e288c3e0fb91f96f9a = L.circleMarker(
+                [52.50025, 13.47438],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_afa71482b94d42e288c3e0fb91f96f9a.bindTooltip(
+                `<div>
+                     Paul-und-Paula-Uferweg
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_2d00dc59332742d2bc4aa059352d0e1b = L.circleMarker(
+                [52.4925, 13.55849],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_2d00dc59332742d2bc4aa059352d0e1b.bindTooltip(
+                `<div>
+                     Alberichstraße
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_7ac1bc4f44cc453f99d930fca7b2dfe5 = L.circleMarker(
+                [52.56692362, 13.41248937],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_7ac1bc4f44cc453f99d930fca7b2dfe5.bindTooltip(
+                `<div>
+                     Berliner Straße Nord
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e046fb9d9a3f4c60907366d9fee549f0 = L.circleMarker(
+                [52.56681286, 13.41216649],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_e046fb9d9a3f4c60907366d9fee549f0.bindTooltip(
+                `<div>
+                     Berliner Straße Süd
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_60276b80438944a3b84f2a3993b939c1 = L.circleMarker(
+                [52.53330769478785, 13.198487973304143],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_60276b80438944a3b84f2a3993b939c1.bindTooltip(
+                `<div>
+                     Klosterstraße Süd
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_9e4f8fa73b8f4b0bbd163ec99d12d51f = L.circleMarker(
+                [52.53351245116568, 13.199052742313857],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_9e4f8fa73b8f4b0bbd163ec99d12d51f.bindTooltip(
+                `<div>
+                     Klosterstraße Nord
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_e821403150f6453ab000f8b8340cf7e4 = L.circleMarker(
+                [52.4667601926523, 13.3091647731717],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_e821403150f6453ab000f8b8340cf7e4.bindTooltip(
+                `<div>
+                     Breitenbachplatz Ost
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_936268ba1ad34b3397542dc6d76d3585 = L.circleMarker(
+                [52.467215435872, 13.3083600753752],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_936268ba1ad34b3397542dc6d76d3585.bindTooltip(
+                `<div>
+                     Breitenbachplatz West
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_34cbc62babd146f1bb615f56b530fb19 = L.circleMarker(
+                [52.437894232432924, 13.387845298728044],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_34cbc62babd146f1bb615f56b530fb19.bindTooltip(
+                `<div>
+                     Mariendorfer Damm Nord
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_644d7305b16445988e23b237886bfce9 = L.circleMarker(
+                [52.43819205808581, 13.387986915344218],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_644d7305b16445988e23b237886bfce9.bindTooltip(
+                `<div>
+                     Mariendorfer Damm Süd
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_5362b3c58928433c905af9ef279e38d4 = L.circleMarker(
+                [52.493, 13.429],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_5362b3c58928433c905af9ef279e38d4.bindTooltip(
+                `<div>
+                     Maybachufer
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_8ff1671091a84fc4a43ac9d83c6d1707 = L.circleMarker(
+                [52.45727, 13.5187],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_8ff1671091a84fc4a43ac9d83c6d1707.bindTooltip(
+                `<div>
+                     Kaisersteg
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_94167e4cbf8a46729d8467627742b157 = L.circleMarker(
+                [52.513584, 13.474242],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_94167e4cbf8a46729d8467627742b157.bindTooltip(
+                `<div>
+                     Frankfurter Allee Ost
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_marker_eac5bef27f774de0bedb1e9034b4253c = L.circleMarker(
+                [52.51379, 13.474414],
+                {"bubblingMouseEvents": true, "color": "#3186cc", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3186cc", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_b0d72233c9cd49f2b94eea2f9e258842);
+        
+    
+            circle_marker_eac5bef27f774de0bedb1e9034b4253c.bindTooltip(
+                `<div>
+                     Frankfurter Allee West
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
