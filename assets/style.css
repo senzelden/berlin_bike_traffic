@@ -1,0 +1,118 @@
+
+* {
+  font-family: Roboto;
+  color:#485C6E;
+}
+
+h1 {
+  color: #485C6E;
+  font-size:40px;
+}
+
+h2 {
+  margin-bottom: 1.5em;
+}
+
+h3 {
+  color: #ff7f0e;
+}
+
+h4 {
+  color:#5C8798;
+  margin-top: 3em;
+  margin-bottom: 0.5em;
+}
+
+h5 {
+  margin-bottom: 0.5em;
+}
+
+.sidebyside {
+  display: flex;
+}
+
+.input-line {
+    border-radius:  5px;
+    margin: 5px;
+}
+
+.radio-select {
+  margin-bottom: 10px;
+}
+
+.radio-select-map {
+  margin-top: 10px;
+  margin-right: 100px;
+}
+
+.radio-select-map2 {
+  margin-top: 10px;
+}
+
+.basic-container {
+  display: flex;
+}
+
+.basic-container-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mini_container {
+  border-radius: 5px;
+  background-color: #FFF7F1;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding: 15px;
+  position: relative;
+  box-shadow: 2px 2px 2px lightgrey;
+}
+
+.one.column,
+ .one.columns                    { width: 8%;             }
+ .two.columns                    { width: 16.25%;         }
+ .three.columns                  { width: 22%;            }
+ .four.columns                   { width: 33%;            }
+ .five.columns                   { width: 39.3333333333%; }
+ .six.columns                    { width: 49.75%;          }
+ .seven.columns                  { width: 56.6666666667%; }
+ .eight.columns                  { width: 66.5%;          }
+ .nine.columns                   { width: 74.0%;          }
+ .ten.columns                    { width: 82.6666666667%; }
+ .eleven.columns                 { width: 91.5%; }
+ .twelve.columns                 { width: 100%; margin-left: 0; }
+
+
+ .pretty-container {
+   border-radius: 20px;
+   background-color: #e8f1f9;
+   margin: 10px;
+   padding: 15px;
+   position: relative;
+   box-shadow: 2px 2px 2px lightgrey;
+ }
+
+# check_single_day {
+    align-content: center;
+}
+
+.filter {
+  margin-bottom: -1em;
+}
+
+.container-sankey {
+  border-radius: 20px;
+  background-color: #e8f1f9;
+  margin: 10px;
+  padding: 15px;
+  position: relative;
+  box-shadow: 2px 2px 2px lightgrey;
+  width: 49.75%;
+}
+
+/* .control_label { */
+  /* padding-top: 1px; */
+  /* color: #ff7f0e; */
+  /* background-color: #0F570C; */
+/* } */

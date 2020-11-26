@@ -16,51 +16,84 @@ df = pd.read_csv('berlin_bikedata_2017-2019.csv')
 fig = go.Figure()
 
 app.layout = html.Div([
-    html.H1('Berlin Bike Traffic (2017-2019)',
-            style={"textAlign": "center",
-                   "display": "flex",
-                   "alignItems": "center",
-                   "justifyContent": "center"}
+    # First row
+    html.Div([
+
+        # Image and Input container left
+        html.Div([
+            html.Img(id="bike image",
+                     height="180px",
+                     src="assets/undraw_bike_ride_7xit.png",
+                     style={"border-radius": "20px"}),
+
+            html.H3("Filter by:",
+                    className="filter"),
+
+            html.H4("Year:",
+                    className="control_label"),
+
+            dcc.Dropdown(
+                id='year-dropdown',
+                options=[
+                    {'label': '2017', 'value': '2017'},
+                    {'label': '2018', 'value': '2018'},
+                    {'label': '2019', 'value': '2019'}
+                ],
+                clearable=False,
+                multi=True,
+                placeholder="year",
             ),
-    html.Iframe(id='map', srcDoc=open('folium_maps/Maybachufer.html', 'r').read(), width='60%', height='300',
-                style={"textAlign": "center",
-                       "display": "flex",
-                       "alignItems": "center",
-                       "justifyContent": "center"}
+
+            html.H4("Station:",
+                    className="control_label"),
+
+            dcc.Dropdown(
+                id='station-dropdown',
+                options=[{'label': item, 'value': item} for item in df['description'].unique().tolist()],
+                clearable=False,
+                multi=False,
+                placeholder="station",
+            ),
+
+            html.H4("Timeframe:",
+                    className="control_label"),
+
+            dcc.Dropdown(
+                id='timeframe-dropdown',
+                options=[
+                    {'label': 'hour', 'value': 'hour_str'},
+                    {'label': 'day', 'value': 'day_name'},
+                    {'label': 'month', 'value': 'month_name'}
+                ],
+                clearable=False,
+                multi=False,
+                placeholder="timeframe",
+            ),
+        ], className="pretty-container three columns"),
+        # Title and main-graph container right
+        html.Div([
+            html.Div([
+                html.H1('Berlin Bike Traffic (2017-2019)',
+                        style={"textAlign": "center",
+                               "display":"flex",
+                               "alignItems":"center",
+                               "justifyContent": "center"})
+            ], className="pretty-container"),
+            html.Div([
+                #
+                html.Iframe(id='map', srcDoc=open('folium_maps/Maybachufer.html', 'r').read(), width='100%', height='300'}
+                        ),
+            ], className="pretty-container"),
+            html.Div([
+                dcc.Graph(
+                    id='scatter-polar',
+                    figure=fig,
                 ),
-    dcc.Graph(
-        id='scatter-polar',
-        figure=fig,
-    ),
-    dcc.Dropdown(
-        id='year-dropdown',
-        options=[
-            {'label': '2017', 'value': '2017'},
-            {'label': '2018', 'value': '2018'},
-            {'label': '2019', 'value': '2019'}
-        ],
-        clearable=False,
-        multi=True,
-        placeholder="year",
-    ),
-    dcc.Dropdown(
-        id='station-dropdown',
-        options=[{'label': item, 'value': item} for item in df['description'].unique().tolist()],
-        clearable=False,
-        multi=False,
-        placeholder="station",
-    ),
-    dcc.Dropdown(
-        id='timeframe-dropdown',
-        options=[
-            {'label': 'hour', 'value': 'hour_str'},
-            {'label': 'day', 'value': 'day_name'},
-            {'label': 'month', 'value': 'month_name'}
-        ],
-        clearable=False,
-        multi=False,
-        placeholder="timeframe",
-    ),
+            ], className="pretty-container"),
+
+
+        ], className="basic-container-column twelve columns"),
+    ], className="basic-container"),
 ])
 
 
@@ -144,4 +177,4 @@ def update_fig(year, station, timeframe):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
