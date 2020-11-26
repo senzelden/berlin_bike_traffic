@@ -24,7 +24,11 @@ app.layout = html.Div([
             html.Img(id="bike image",
                      height="180px",
                      src="assets/undraw_bike_ride_7xit.png",
-                     style={"border-radius": "20px"}),
+                     style={"border-radius": "30px",
+                            "textAlign": "center",
+                            "display":"flex",
+                            "alignItems":"center",
+                            "justifyContent": "center"}),
 
             html.H3("Filter by:",
                     className="filter"),
@@ -41,6 +45,7 @@ app.layout = html.Div([
                 ],
                 clearable=False,
                 multi=True,
+                value=2019,
                 placeholder="year",
             ),
 
@@ -52,6 +57,7 @@ app.layout = html.Div([
                 options=[{'label': item, 'value': item} for item in df['description'].unique().tolist()],
                 clearable=False,
                 multi=False,
+                value="Maybachufer",
                 placeholder="station",
             ),
 
@@ -67,6 +73,7 @@ app.layout = html.Div([
                 ],
                 clearable=False,
                 multi=False,
+                value="hour_str",
                 placeholder="timeframe",
             ),
 
@@ -81,9 +88,10 @@ app.layout = html.Div([
                 ],
                 clearable=False,
                 multi=False,
+                value="max",
                 placeholder="radial range",
             ),
-        ], className="pretty-container three columns"),
+        ], className="pretty-container"),
         # Title and main-graph container right
         html.Div([
             html.Div([
