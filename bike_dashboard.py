@@ -45,7 +45,7 @@ app.layout = html.Div([
                 ],
                 clearable=False,
                 multi=True,
-                value=2019,
+                value=[2019],
                 placeholder="year",
             ),
 

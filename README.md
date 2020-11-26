@@ -3,7 +3,7 @@
 
 ### Background
 
-The city of Berlin makes their data more and more publicly accessible.
+The city of Berlin makes a lot of their bicycle data publicly accessible.
 
 ### Goal
 
