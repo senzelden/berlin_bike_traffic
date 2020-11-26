@@ -69,6 +69,20 @@ app.layout = html.Div([
                 multi=False,
                 placeholder="timeframe",
             ),
+
+            html.H4("Radial Range:",
+                    className="control_label"),
+
+            dcc.Dropdown(
+                id='radialrange-dropdown',
+                options=[
+                    {'label': 'max', 'value': 'max'},
+                    {'label': 'median', 'value': 'median'}
+                ],
+                clearable=False,
+                multi=False,
+                placeholder="radial range",
+            ),
         ], className="pretty-container three columns"),
         # Title and main-graph container right
         html.Div([
@@ -81,8 +95,7 @@ app.layout = html.Div([
             ], className="pretty-container"),
             html.Div([
                 #
-                html.Iframe(id='map', srcDoc=open('folium_maps/Maybachufer.html', 'r').read(), width='100%', height='300'}
-                        ),
+                html.Iframe(id='map', srcDoc=open('folium_maps/Maybachufer.html', 'r').read(), width='100%', height='300'),
             ], className="pretty-container"),
             html.Div([
                 dcc.Graph(
@@ -103,24 +116,29 @@ app.layout = html.Div([
     [
      Input('year-dropdown', 'value'),
      Input('station-dropdown', 'value'),
-     Input('timeframe-dropdown', 'value')
+     Input('timeframe-dropdown', 'value'),
+     Input('radialrange-dropdown', 'value')
     ]
 )
-def update_fig(year, station, timeframe):
+def update_fig(year, station, timeframe, radialrange):
     df = pd.read_csv('berlin_bikedata_2017-2019.csv')
-    if year:
+    if year != "year":
         is_year = df['year'].isin(year)
         complete_df = df[is_year]
     else:
         complete_df = df
-    if station != None:
+    if station != "station":
         pass
     else:
         station = 'Maybachufer'
-    if timeframe != None:
+    if timeframe != "timeframe":
         pass
     else:
-        timeframe: 'day_name'
+        timeframe = 'day_name'
+    if radialrange != "radial range":
+        pass
+    else:
+        radialrange = 'max'
 
     CATEGORY = timeframe  # 'hour_str'
     CAT_SORTERS = {'day_name': 'weekday', 'hour_str': 'hour', 'month_name': 'month'}
@@ -131,6 +149,7 @@ def update_fig(year, station, timeframe):
     df_max = complete_df[(complete_df.description == station)].groupby([CATEGORY, CAT_SORTERS[CATEGORY]])[
         ['total_bikes']].max().reset_index().sort_values(CAT_SORTERS[CATEGORY])
     df_max['location'] = station
+    radialrange_dict = {'max': df_max['total_bikes'].max(), 'median': df_median['total_bikes'].max()}
 
     categories = df_median[CATEGORY]
 
@@ -165,6 +184,7 @@ def update_fig(year, station, timeframe):
         showlegend=False,
         polar=dict(
             radialaxis_tickfont_size=10,
+            radialaxis=dict(range=[0, radialrange_dict[radialrange]]),
             angularaxis=dict(
                 tickfont_size=10,
                 rotation=90,  # start position of angular axis
@@ -177,4 +197,4 @@ def update_fig(year, station, timeframe):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
