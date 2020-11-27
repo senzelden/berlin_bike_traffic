@@ -115,6 +115,18 @@ app.layout = html.Div([
 
         ], className="basic-container-column twelve columns"),
     ], className="basic-container"),
+
+    # Second row
+    html.Div([
+        # Barchart left
+        html.Div([
+            # To Do: Implement Bar chart
+        ], className="pretty-container"),
+        # Dropdowns right
+        html.Div([
+            # To Do: Implement Dropdowns
+        ], className="pretty-container"),
+    ], className="basic-container"))
 ])
 
 

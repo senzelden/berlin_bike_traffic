@@ -12,3 +12,13 @@ Build a dashboard on bike traffic in Berlin with pandas, folium and dash
 ### Sources
 
 https://www.berlin.de/sen/uvk/verkehr/verkehrsplanung/radverkehr/weitere-radinfrastruktur/zaehlstellen-und-fahrradbarometer/
+
+### Influenced by
+
+https://github.com/GesaJo/Capital-Bike-Dashboard
+https://lab.technologiestiftung-berlin.de/projects/bikerides/de/
+
+### To Do
+
+* Balkendiagramme pro Straße (nach Tagen, Wochen, Monaten): Gesamtaufkommen
+* Gesamtaufkommen jährlich, insgesamt gezählte Räder, täglicher Durchschnitt
