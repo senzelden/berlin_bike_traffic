@@ -22,3 +22,4 @@ https://lab.technologiestiftung-berlin.de/projects/bikerides/de/
 
 * Balkendiagramme pro Straße (nach Tagen, Wochen, Monaten): Gesamtaufkommen
 * Gesamtaufkommen jährlich, insgesamt gezählte Räder, täglicher Durchschnitt
+* Better code design (apply code style, add docstrings, put functions in helpers file)
