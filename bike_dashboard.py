@@ -1,7 +1,8 @@
+"""bike count dashboard in dash"""
+
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
-import dash_table
 import pandas as pd
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
@@ -141,6 +142,7 @@ app.layout = html.Div([
     ]
 )
 def update_fig(year, station, timeframe, radialrange):
+    """updates polar chart"""
     df = pd.read_csv('berlin_bikedata_2017-2019.csv')
     if year != "year":
         is_year = df['year'].isin(year)
