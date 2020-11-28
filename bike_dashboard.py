@@ -127,7 +127,7 @@ app.layout = html.Div([
         html.Div([
             # To Do: Implement Dropdowns
         ], className="pretty-container"),
-    ], className="basic-container"))
+    ], className="basic-container")
 ])
 
 
