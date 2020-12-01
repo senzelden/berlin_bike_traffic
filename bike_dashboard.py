@@ -14,6 +14,8 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 df = pd.read_csv('berlin_bikedata_2017-2019.csv')
 
+streets_dict = {"Alberichstraße": "24", "Berliner Straße": "10", "Breitenbachplatz": "17", "Frankfurter Allee": "06", "Invalidenstraße": "03","Jannowitzbrücke": "02", "Kaisersteg": "23", "Klosterstraße": "15", "Mariendorfer Damm": "20", "Markstraße": "27", "Maybachufer": "21", "Monumentenstraße": "19", "Oberbaumbrücke": "05", "Paul-und-Paula-Uferweg": "26", "Prinzregentenstraße": "13", "Schwedter Steg": "12", "Yorckstraße": "18"}
+
 fig = go.Figure()
 
 app.layout = html.Div([
@@ -125,7 +127,27 @@ app.layout = html.Div([
         ], className="pretty-container"),
         # Dropdowns right
         html.Div([
-            # To Do: Implement Dropdowns
+            dcc.Dropdown(
+                id='two-direction-station-dropdown',
+                options=[{'label': key, 'value': value} for key, value in streets_dict.items()],
+                clearable=False,
+                multi=False,
+                value="21",
+                placeholder="station",
+            ),
+            dcc.Dropdown(
+                id='frequency-dropdown',
+                options=[
+                    {'label': "Day", 'value': "Day"},
+                    {'label': "Week", 'value': "Week"},
+                    {'label': "Month", 'value': "Month"},
+                    {'label': "Year", 'value': "Year"}
+                    ],
+                clearable=False,
+                multi=False,
+                value="Month",
+                placeholder="frequency",
+            ),
         ], className="pretty-container"),
     ], className="basic-container")
 ])
