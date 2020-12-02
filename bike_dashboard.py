@@ -5,6 +5,7 @@ import dash_html_components as html
 import dash_core_components as dcc
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 from dash.dependencies import Input, Output
 
 
@@ -13,8 +14,30 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 df = pd.read_csv('berlin_bikedata_2017-2019.csv')
+df['station_short'] = df.station.str.split("-", n=1, expand=True).rename(columns={0:"station_short"})['station_short']
+df['timestamp'] = pd.to_datetime(df.timestamp)
 
+frequency_dict = {"frequency": {"Day": {"short": "D", "d3_format": "%b %d, %Y (%a)"}, "Week": {"short": "W", "d3_format": "%b %d, %Y"}, "Month":{"short": "M", "d3_format": "%B %Y"}, "Year":{"short": "Y", "d3_format": "%Y"}}}
 streets_dict = {"Alberichstraße": "24", "Berliner Straße": "10", "Breitenbachplatz": "17", "Frankfurter Allee": "06", "Invalidenstraße": "03","Jannowitzbrücke": "02", "Kaisersteg": "23", "Klosterstraße": "15", "Mariendorfer Damm": "20", "Markstraße": "27", "Maybachufer": "21", "Monumentenstraße": "19", "Oberbaumbrücke": "05", "Paul-und-Paula-Uferweg": "26", "Prinzregentenstraße": "13", "Schwedter Steg": "12", "Yorckstraße": "18"}
+
+
+class Frequency:
+    def __init__(self, frequency, frequency_dict, location_id):
+        self.frequency = frequency
+        self.frequency_short = frequency_dict["frequency"][frequency]["short"]
+        self.d3_format = frequency_dict["frequency"][frequency]["d3_format"]
+        self.location_id = location_id
+        self.hovertext = f'{self.frequency}: %{{x|{self.d3_format}}}<br>Total Bikes: %{{y}}'
+
+
+barchart_object = Frequency("Week", frequency_dict, "27")
+barchart_df = df.set_index("timestamp").groupby(["description", "station_short"])[["total_bikes"]].resample(
+    barchart_object.frequency_short).sum().reset_index()
+street_names = " / ".join(barchart_df[barchart_df.station_short == barchart_object.location_id]["description"].unique())
+barchart_title = f"{barchart_object.frequency}ly Data for Bicycle Counter {street_names}"
+
+barchart_fig = px.bar(barchart_df[barchart_df.station_short == barchart_object.location_id], x="timestamp", y="total_bikes", color="description", title=barchart_title)
+barchart_fig.update_traces(hovertemplate=barchart_object.hovertext)
 
 fig = go.Figure()
 
@@ -123,13 +146,19 @@ app.layout = html.Div([
     html.Div([
         # Barchart left
         html.Div([
-            # To Do: Implement Bar chart
-        ], className="pretty-container"),
+            html.Div([
+                dcc.Graph(
+                    id='bar-chart',
+                    figure=barchart_fig,
+                ),
+            ], className="pretty-container"),
+        ], className="basic-container-column twelve columns"),
         # Dropdowns right
         html.Div([
             dcc.Dropdown(
                 id='two-direction-station-dropdown',
                 options=[{'label': key, 'value': value} for key, value in streets_dict.items()],
+                style={"flex-grow":"2",},
                 clearable=False,
                 multi=False,
                 value="21",
@@ -143,13 +172,14 @@ app.layout = html.Div([
                     {'label': "Month", 'value': "Month"},
                     {'label': "Year", 'value': "Year"}
                     ],
+                style={"flex-grow":"2",},
                 clearable=False,
                 multi=False,
                 value="Month",
                 placeholder="frequency",
             ),
-        ], className="pretty-container"),
-    ], className="basic-container")
+        ], className="pretty-container three columns"),
+    ], className="basic-container"),
 ])
 
 
@@ -239,6 +269,25 @@ def update_fig(year, station, timeframe, radialrange):
 
     return fig, open(f'folium_maps/{station}.html', 'r').read()
 
+
+@app.callback(
+    Output('bar-chart', 'figure'),
+    [
+     Input('two-direction-station-dropdown', 'value'),
+     Input('frequency-dropdown', 'value')
+    ]
+)
+def update_barchart_fig(street, frequency):
+    """updates polar chart"""
+    barchart_object = Frequency(frequency, frequency_dict, street)
+    barchart_df = df.set_index("timestamp").groupby(["description", "station_short"])[["total_bikes"]].resample(
+        barchart_object.frequency_short).sum().reset_index()
+    street_names = " / ".join(barchart_df[barchart_df.station_short == barchart_object.location_id]["description"].unique())
+    barchart_title = f"{barchart_object.frequency}ly Data for Bicycle Counter {street_names}"
+
+    barchart_fig = px.bar(barchart_df[barchart_df.station_short == barchart_object.location_id], x="timestamp", y="total_bikes", color="description", title=barchart_title)
+    barchart_fig.update_traces(hovertemplate=barchart_object.hovertext)
+    return barchart_fig
 
 if __name__ == '__main__':
     app.run_server(debug=True)
