@@ -27,7 +27,7 @@ class Frequency:
         self.frequency_short = frequency_dict["frequency"][frequency]["short"]
         self.d3_format = frequency_dict["frequency"][frequency]["d3_format"]
         self.location_id = location_id
-        self.hovertext = f'{self.frequency}: %{{x|{self.d3_format}}}<br>Total Bikes: %{{y}}'
+        self.hovertext = f'<b>{self.frequency}</b>: %{{x|{self.d3_format}}}<br><b>Total Bikes</b>: %{{y}}'
 
 
 barchart_object = Frequency("Week", frequency_dict, "27")
@@ -155,6 +155,8 @@ app.layout = html.Div([
         ], className="basic-container-column twelve columns"),
         # Dropdowns right
         html.Div([
+            html.H4("Street:",
+                    className="control_label"),
             dcc.Dropdown(
                 id='two-direction-station-dropdown',
                 options=[{'label': key, 'value': value} for key, value in streets_dict.items()],
@@ -164,6 +166,8 @@ app.layout = html.Div([
                 value="21",
                 placeholder="station",
             ),
+            html.H4("Frequency:",
+                    className="control_label"),
             dcc.Dropdown(
                 id='frequency-dropdown',
                 options=[
@@ -278,7 +282,7 @@ def update_fig(year, station, timeframe, radialrange):
     ]
 )
 def update_barchart_fig(street, frequency):
-    """updates polar chart"""
+    """updates bar chart"""
     barchart_object = Frequency(frequency, frequency_dict, street)
     barchart_df = df.set_index("timestamp").groupby(["description", "station_short"])[["total_bikes"]].resample(
         barchart_object.frequency_short).sum().reset_index()
