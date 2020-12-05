@@ -9,7 +9,7 @@ import plotly.express as px
 from dash.dependencies import Input, Output
 
 from barchart_helper import Frequency, prepare_dataframe, get_parts_for_barchart, frequency_dict, streets_dict
-
+from polar_helper import prepare_data_for_polar
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -204,16 +204,7 @@ def update_fig(year, station, timeframe, radialrange):
 
     CATEGORY = timeframe  # 'hour_str'
     CAT_SORTERS = {'day_name': 'weekday', 'hour_str': 'hour', 'month_name': 'month'}
-
-    df_median = complete_df[(complete_df.description == station)].groupby([CATEGORY, CAT_SORTERS[CATEGORY]])[
-        ['total_bikes']].median().reset_index().sort_values(CAT_SORTERS[CATEGORY])
-    df_median['location'] = station
-    df_max = complete_df[(complete_df.description == station)].groupby([CATEGORY, CAT_SORTERS[CATEGORY]])[
-        ['total_bikes']].max().reset_index().sort_values(CAT_SORTERS[CATEGORY])
-    df_max['location'] = station
-    radialrange_dict = {'max': df_max['total_bikes'].max(), 'median': df_median['total_bikes'].max()}
-
-    categories = df_median[CATEGORY]
+    df_median, df_max, radialrange_dict, categories = prepare_data_for_polar(complete_df, CATEGORY, CAT_SORTERS, station)
 
     fig = go.Figure()
 
@@ -268,11 +259,7 @@ def update_fig(year, station, timeframe, radialrange):
 def update_barchart_fig(street, frequency):
     """updates bar chart"""
     barchart_object = Frequency(frequency, frequency_dict, street)
-    barchart_df = df.set_index("timestamp").groupby(["description", "station_short"])[["total_bikes"]].resample(
-        barchart_object.frequency_short).sum().reset_index()
-    street_names = " / ".join(barchart_df[barchart_df.station_short == barchart_object.location_id]["description"].unique())
-    barchart_title = f"{barchart_object.frequency}ly Data for Bicycle Counter {street_names}"
-
+    barchart_df, barchart_title = get_parts_for_barchart(df, barchart_object)
     barchart_fig = px.bar(barchart_df[barchart_df.station_short == barchart_object.location_id], x="timestamp", y="total_bikes", color="description", title=barchart_title)
     barchart_fig.update_traces(hovertemplate=barchart_object.hovertext)
     return barchart_fig
