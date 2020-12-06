@@ -1,11 +1,22 @@
+:root {
+    --h1-color: #485C6E;
+    /*    #485C6E */
+    --h3-color: #83677b;
+    /*    #ff7f0e */
+    --h4-color: #5C8798;
+    /*    #5C8798 */
+    --mini-container-color: #FFF7F1;
+    --pretty-container-color: #e8f1f9;
+    /*    #e8f1f9 */
+}
 
 * {
   font-family: Roboto;
-  color:#485C6E;
+  color:var(--h1-color);
 }
 
 h1 {
-  color: #485C6E;
+  color: var(--h1-color);
   font-size:40px;
 }
 
@@ -14,11 +25,11 @@ h2 {
 }
 
 h3 {
-  color: #ff7f0e;
+  color: var(--h3-color);
 }
 
 h4 {
-  color:#5C8798;
+  color:var(--h4-color);
   margin-top: 3em;
   margin-bottom: 0.5em;
 }
@@ -61,7 +72,7 @@ h5 {
 
 .mini_container {
   border-radius: 5px;
-  background-color: #FFF7F1;
+  background-color: var(--mini-container-color);
   margin-top: 20px;
   margin-bottom: 40px;
   padding: 15px;
@@ -86,7 +97,7 @@ h5 {
 
  .pretty-container {
    border-radius: 20px;
-   background-color: #e8f1f9;
+   background-color: var(--pretty-container-color);
    margin: 10px;
    padding: 15px;
    position: relative;
@@ -103,7 +114,7 @@ h5 {
 
 .container-sankey {
   border-radius: 20px;
-  background-color: #e8f1f9;
+  background-color: var(--pretty-container-color);
   margin: 10px;
   padding: 15px;
   position: relative;

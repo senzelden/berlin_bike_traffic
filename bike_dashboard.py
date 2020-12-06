@@ -36,8 +36,8 @@ app.layout = html.Div([
                      src="assets/undraw_bike_ride_7xit.png",
                      style={"border-radius": "30px",
                             "textAlign": "center",
-                            "display":"flex",
-                            "alignItems":"center",
+                            "display": "flex",
+                            "alignItems": "center",
                             "justifyContent": "center"}),
 
             html.H3("Filter by:",
