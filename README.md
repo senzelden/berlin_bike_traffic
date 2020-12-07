@@ -20,7 +20,11 @@ https://lab.technologiestiftung-berlin.de/projects/bikerides/de/
 
 ### To Do
 
-* Balkendiagramme pro Straße (nach Tagen, Wochen, Monaten): Gesamtaufkommen
 * Gesamtaufkommen jährlich, insgesamt gezählte Räder, täglicher Durchschnitt
 * Better code design (apply code style, add docstrings, put functions in helpers file)
 * Use data from all years
+* put helper functions in packages
+* Update CSS design (colors, paddings, fonts)
+* Add longer explanatory text in README
+* Add notebook with prediction, analyze development during Covid-19
+* Improve loading time (prepare csv file completely beforehand)
