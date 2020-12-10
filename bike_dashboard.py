@@ -234,7 +234,8 @@ def update_fig(year, station, timeframe, radialrange):
     ))
 
     fig.update_layout(
-        showlegend=False,
+        showlegend=True,
+        title=f"Maximum and Median Bikes for {station}",
         polar=dict(
             radialaxis_tickfont_size=10,
             radialaxis=dict(range=[0, radialrange_dict[radialrange]]),
@@ -260,8 +261,26 @@ def update_barchart_fig(street, frequency):
     """updates bar chart"""
     barchart_object = Frequency(frequency, frequency_dict, street)
     barchart_df, barchart_title = get_parts_for_barchart(df, barchart_object)
-    barchart_fig = px.bar(barchart_df[barchart_df.station_short == barchart_object.location_id], x="timestamp", y="total_bikes", color="description", title=barchart_title)
+    barchart_fig = px.bar(barchart_df[barchart_df.station_short == barchart_object.location_id], x="timestamp", y="total_bikes", color="description", title=barchart_title, labels={"total_bikes": "Total Bikes", "description": "Street", "timestamp": f"{frequency}"})
     barchart_fig.update_traces(hovertemplate=barchart_object.hovertext)
+    barchart_fig.update_layout(
+        xaxis=dict(
+            rangeselector=dict(
+                buttons=list(
+                    [
+                        dict(count=1, label="1m", step="month", stepmode="backward"),
+                        dict(count=6, label="6m", step="month", stepmode="backward"),
+                        dict(count=1, label="YTD", step="year", stepmode="todate"),
+                        dict(count=1, label="1y", step="year", stepmode="backward"),
+                        dict(step="all"),
+                    ]
+                )
+            ),
+            rangeslider=dict(visible=True),
+            type="date",
+        )
+    )
+
     return barchart_fig
 
 if __name__ == '__main__':

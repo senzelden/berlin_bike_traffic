@@ -25,7 +25,7 @@ def get_parts_for_barchart(df, barchart_object):
     barchart_df = df.set_index("timestamp").groupby(["description", "station_short"])[["total_bikes"]].resample(
         barchart_object.frequency_short).sum().reset_index()
     street_names = " / ".join(barchart_df[barchart_df.station_short == barchart_object.location_id]["description"].unique())
-    barchart_title = f"{barchart_object.frequency}ly Data for Bicycle Counter {street_names}"
+    barchart_title = f"Data for Bicycle Counter {street_names}"
     return barchart_df, barchart_title
 
 
