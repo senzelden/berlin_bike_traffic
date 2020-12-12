@@ -28,3 +28,4 @@ https://lab.technologiestiftung-berlin.de/projects/bikerides/de/
 * Add longer explanatory text in README
 * Add notebook with prediction, analyze development during Covid-19
 * Improve loading time (prepare csv file completely beforehand)
+* Add Gesamtaufkommen next to polar chart
