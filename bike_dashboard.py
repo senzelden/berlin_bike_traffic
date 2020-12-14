@@ -27,6 +27,30 @@ prepare_dataframe(df)
 barchart_object = Frequency("Week", frequency_dict, "27")
 barchart_df, barchart_title = get_parts_for_barchart(df, barchart_object)
 
+comparison_df = df.set_index("timestamp")
+comparison = ComparisonBetweenStations([2019], "sum")
+agg_comp_df = aggregate(comparison_df, comparison)
+
+# Barchart with Total Bikes by year and bicycle counter
+comparison_fig = px.bar(
+    agg_comp_df.reset_index(),
+    x="total_bikes",
+    y="description",
+    color="total_bikes",
+    orientation="h",
+    labels={"total_bikes": "Total Bikes", "description": "Bicycle Counter"},
+)
+comparison_fig.add_annotation(
+    text=f"{comparison.years_string}",
+    xref="paper",
+    yref="paper",
+    x=1,
+    y=-0.05,
+    showarrow=False,
+    opacity=0.1,
+    font=dict(family="Arial", size=70, color="black"),
+)
+
 barchart_fig = px.bar(
     barchart_df[barchart_df.station_short == barchart_object.location_id],
     x="timestamp",
@@ -143,15 +167,26 @@ app.layout = html.Div(
                             ],
                             className="pretty-container",
                         ),
-                        html.Div(
-                            [
-                                dcc.Graph(
-                                    id="scatter-polar",
-                                    figure=fig,
-                                ),
-                            ],
-                            className="pretty-container",
-                        ),
+                        html.Div([
+                            html.Div(
+                                [
+                                    dcc.Graph(
+                                        id="scatter-polar",
+                                        figure=fig,
+                                    ),
+                                ],
+                                className="pretty-container",
+                            ),
+                            html.Div(
+                                [
+                                    dcc.Graph(
+                                        id="comparison-bar",
+                                        figure=comparison_fig,
+                                    ),
+                                ],
+                                className="pretty-container",
+                            ),
+                        ], className="basic-container",),
                     ],
                     className="basic-container-column twelve columns",
                 ),

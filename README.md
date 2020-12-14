@@ -29,3 +29,4 @@ https://lab.technologiestiftung-berlin.de/projects/bikerides/de/
 * Add notebook with prediction, analyze development during Covid-19
 * Improve loading time (prepare csv file completely beforehand)
 * Add Gesamtaufkommen next to polar chart
+* Make Comparison Barchart dependent from year, radial range (highlight selected station)
