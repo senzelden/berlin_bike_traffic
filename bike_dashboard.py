@@ -257,7 +257,7 @@ app.layout = html.Div(
 
 
 @app.callback(
-    [Output("scatter-polar", "figure"), Output("map", "srcDoc")],
+    [Output("scatter-polar", "figure"), Output("map", "srcDoc"), Output("comparison-bar", "figure")],
     [
         Input("year-dropdown", "value"),
         Input("station-dropdown", "value"),
@@ -335,8 +335,35 @@ def update_fig(year, station, timeframe, radialrange):
             ),
         ),
     )
+    aggregation_type = "sum"
+    x_label = "Total Bikes"
+    if radialrange == "median":
+        aggregation_type = "mean"
+        x_label = "Average Bikes"
+    comparison = ComparisonBetweenStations(year, aggregation_type)
+    agg_comp_df = aggregate(comparison_df, comparison)
 
-    return fig, open(f"folium_maps/{station}.html", "r").read()
+    # Barchart with Total Bikes by year and bicycle counter
+    comparison_fig = px.bar(
+        agg_comp_df.reset_index(),
+        x="total_bikes",
+        y="description",
+        color="total_bikes",
+        orientation="h",
+        labels={"total_bikes": x_label, "description": "Bicycle Counter"},
+    )
+    comparison_fig.add_annotation(
+        text=f"{comparison.years_string}",
+        xref="paper",
+        yref="paper",
+        x=1,
+        y=-0.05,
+        showarrow=False,
+        opacity=0.1,
+        font=dict(family="Arial", size=70, color="black"),
+    )
+
+    return fig, open(f"folium_maps/{station}.html", "r").read(), comparison_fig
 
 
 @app.callback(
