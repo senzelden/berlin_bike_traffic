@@ -362,6 +362,8 @@ def update_fig(year, station, timeframe, radialrange):
         opacity=0.1,
         font=dict(family="Arial", size=70, color="black"),
     )
+    comparison_fig.update_traces(hovertemplate=f"<b>%{{y}}</b><br><b>Bikes</b>: %{{x:.0f}}")
+
 
     return fig, open(f"folium_maps/{station}.html", "r").read(), comparison_fig
 
