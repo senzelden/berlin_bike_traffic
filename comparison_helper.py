@@ -47,6 +47,25 @@ def aggregate(df, comparison):
     return bikes_df
 
 
+def get_key(my_dict, val):
+    """function to return key for any value"""
+    for key, value in my_dict.items():
+        if val == value:
+            return key
+
+    return "key doesn't exist"
+
+
+def map_colors(dataframe, station_name):
+    """returns list of y values for horizontal bar and color map"""
+    stations_dict = dataframe.reset_index()['description'].to_dict()
+    colors = ['lightslategray', ] * len(stations_dict)
+    colors[get_key(stations_dict, station_name)] = 'crimson'
+    stations_list = stations_dict.values()
+    color_map = dict(zip(stations_list, colors))
+    return stations_list, color_map
+
+
 if __name__ == "__main__":
     df = pd.read_csv("berlin_bikedata_2017-2019.csv")
     prepare_comparison_df(df)

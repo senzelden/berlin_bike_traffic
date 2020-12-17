@@ -15,7 +15,7 @@ from barchart_helper import (
     frequency_dict,
     streets_dict,
 )
-from comparison_helper import ComparisonBetweenStations, prepare_comparison_df, aggregate
+from comparison_helper import ComparisonBetweenStations, prepare_comparison_df, aggregate, map_colors
 from polar_helper import prepare_data_for_polar
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
@@ -30,13 +30,15 @@ barchart_df, barchart_title = get_parts_for_barchart(df, barchart_object)
 comparison_df = df.set_index("timestamp")
 comparison = ComparisonBetweenStations([2019], "sum")
 agg_comp_df = aggregate(comparison_df, comparison)
+stations_list, color_map = map_colors(agg_comp_df, "Maybachufer")
 
 # Barchart with Total Bikes by year and bicycle counter
 comparison_fig = px.bar(
     agg_comp_df.reset_index(),
     x="total_bikes",
     y="description",
-    color="total_bikes",
+    color=stations_list,
+    color_discrete_map=color_map,
     orientation="h",
     labels={"total_bikes": "Total Bikes", "description": "Bicycle Counter"},
 )
@@ -342,13 +344,15 @@ def update_fig(year, station, timeframe, radialrange):
         x_label = "Average Bikes"
     comparison = ComparisonBetweenStations(year, aggregation_type)
     agg_comp_df = aggregate(comparison_df, comparison)
+    stations_list, color_map = map_colors(agg_comp_df, station)
 
     # Barchart with Total Bikes by year and bicycle counter
     comparison_fig = px.bar(
         agg_comp_df.reset_index(),
         x="total_bikes",
         y="description",
-        color="total_bikes",
+        color=stations_list,
+        color_discrete_map=color_map,
         orientation="h",
         labels={"total_bikes": x_label, "description": "Bicycle Counter"},
     )
@@ -363,6 +367,7 @@ def update_fig(year, station, timeframe, radialrange):
         font=dict(family="Arial", size=70, color="black"),
     )
     comparison_fig.update_traces(hovertemplate=f"<b>%{{y}}</b><br><b>Bikes</b>: %{{x:.0f}}")
+    comparison_fig.update_layout(showlegend=False, font_size=8)
 
 
     return fig, open(f"folium_maps/{station}.html", "r").read(), comparison_fig
