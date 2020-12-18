@@ -72,71 +72,75 @@ app.layout = html.Div(
                 # Image and Input container left
                 html.Div(
                     [
-                        html.Img(
-                            id="bike image",
-                            height="180px",
-                            src="assets/undraw_bike_ride_7xit.png",
-                            style={
-                                "border-radius": "30px",
-                                "textAlign": "center",
-                                "display": "flex",
-                                "alignItems": "center",
-                                "justifyContent": "center",
-                            },
-                        ),
-                        html.H3("Filter by:", className="filter"),
-                        html.H4("Year:", className="control_label"),
-                        dcc.Dropdown(
-                            id="year-dropdown",
-                            options=[
-                                {"label": "2017", "value": "2017"},
-                                {"label": "2018", "value": "2018"},
-                                {"label": "2019", "value": "2019"},
-                            ],
-                            clearable=False,
-                            multi=True,
-                            value=[2019],
-                            placeholder="year",
-                        ),
-                        html.H4("Station:", className="control_label"),
-                        dcc.Dropdown(
-                            id="station-dropdown",
-                            options=[
-                                {"label": item, "value": item}
-                                for item in df["description"].unique().tolist()
-                            ],
-                            clearable=False,
-                            multi=False,
-                            value="Maybachufer",
-                            placeholder="station",
-                        ),
-                        html.H4("Timeframe:", className="control_label"),
-                        dcc.Dropdown(
-                            id="timeframe-dropdown",
-                            options=[
-                                {"label": "hour", "value": "hour_str"},
-                                {"label": "day", "value": "day_name"},
-                                {"label": "month", "value": "month_name"},
-                            ],
-                            clearable=False,
-                            multi=False,
-                            value="hour_str",
-                            placeholder="timeframe",
-                        ),
-                        html.H4("Radial Range:", className="control_label"),
-                        dcc.Dropdown(
-                            id="radialrange-dropdown",
-                            options=[
-                                {"label": "max", "value": "max"},
-                                {"label": "median", "value": "median"},
-                            ],
-                            clearable=False,
-                            multi=False,
-                            value="max",
-                            placeholder="radial range",
-                        ),
+                        html.Div(
+                            [
+                                html.Img(
+                                    id="bike image",
+                                    height="180px",
+                                    src="assets/undraw_bike_ride_7xit.png",
+                                    style={
+                                        "border-radius": "30px",
+                                        "display": "block",
+                                        "margin-left": "auto",
+                                        "margin-right": "auto",
+                                    },
+                                ),
+                                html.P("This Bike Traffic Dashboard shows data from bicycle counters in Berlin. \nEach bicycle counter counts the amount of bicycles passing per hour. \nData is accessible starting from 2012, with most data points starting from 2017. \nThis data includes the latest data from 2017 through 2019. \nThe original data can be accessed here.", title="About"),
+                                html.H3("Filter by:", className="filter"),
+                                html.H4("Year:", className="control_label"),
+                                dcc.Dropdown(
+                                    id="year-dropdown",
+                                    options=[
+                                        {"label": "2017", "value": "2017"},
+                                        {"label": "2018", "value": "2018"},
+                                        {"label": "2019", "value": "2019"},
+                                    ],
+                                    clearable=False,
+                                    multi=True,
+                                    value=[2019],
+                                    placeholder="year",
+                                ),
+                                html.H4("Station:", className="control_label"),
+                                dcc.Dropdown(
+                                    id="station-dropdown",
+                                    options=[
+                                        {"label": item, "value": item}
+                                        for item in df["description"].unique().tolist()
+                                    ],
+                                    clearable=False,
+                                    multi=False,
+                                    value="Maybachufer",
+                                    placeholder="station",
+                                ),
+                                html.H4("Timeframe:", className="control_label"),
+                                dcc.Dropdown(
+                                    id="timeframe-dropdown",
+                                    options=[
+                                        {"label": "hour", "value": "hour_str"},
+                                        {"label": "day", "value": "day_name"},
+                                        {"label": "month", "value": "month_name"},
+                                    ],
+                                    clearable=False,
+                                    multi=False,
+                                    value="hour_str",
+                                    placeholder="timeframe",
+                                ),
+                                html.H4("Radial Range:", className="control_label"),
+                                dcc.Dropdown(
+                                    id="radialrange-dropdown",
+                                    options=[
+                                        {"label": "max", "value": "max"},
+                                        {"label": "median", "value": "median"},
+                                    ],
+                                    clearable=False,
+                                    multi=False,
+                                    value="max",
+                                    placeholder="radial range",
+                                ),
+                        ], className="pretty-container"),
+
                     ],
-                    className="pretty-container",
+                    className="basic-container-column three columns",
                 ),
                 # Title and main-graph container right
                 html.Div(
