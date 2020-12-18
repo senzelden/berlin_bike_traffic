@@ -76,7 +76,7 @@ app.layout = html.Div(
                             [
                                 html.Img(
                                     id="bike image",
-                                    height="180px",
+                                    height="240px",
                                     src="assets/undraw_bike_ride_7xit.png",
                                     style={
                                         "border-radius": "30px",
@@ -370,7 +370,7 @@ def update_fig(year, station, timeframe, radialrange):
         opacity=0.1,
         font=dict(family="Arial", size=70, color="black"),
     )
-    comparison_fig.update_traces(hovertemplate=f"<b>%{{y}}</b><br><b>Bikes</b>: %{{x:.0f}}")
+    comparison_fig.update_traces(hovertemplate=f"<b>%{{y}}</b><br><b>Bikes</b>: %{{x:.0f}}<extra></extra>")
     comparison_fig.update_layout(showlegend=False, font_size=8)
 
 
@@ -393,6 +393,7 @@ def update_barchart_fig(street, frequency):
         x="timestamp",
         y="total_bikes",
         color="description",
+        color_discrete_sequence=["dodgerblue", "purple"],
         title=barchart_title,
         labels={
             "total_bikes": "Total Bikes",

@@ -60,7 +60,7 @@ def map_colors(dataframe, station_name):
     """returns list of y values for horizontal bar and color map"""
     stations_dict = dataframe.reset_index()['description'].to_dict()
     colors = ['lightslategray', ] * len(stations_dict)
-    colors[get_key(stations_dict, station_name)] = 'crimson'
+    colors[get_key(stations_dict, station_name)] = 'lightgreen'
     stations_list = stations_dict.values()
     color_map = dict(zip(stations_list, colors))
     return stations_list, color_map
