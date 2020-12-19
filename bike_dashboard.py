@@ -40,6 +40,7 @@ comparison_fig = px.bar(
     color=stations_list,
     color_discrete_map=color_map,
     orientation="h",
+    height=500,
     labels={"total_bikes": "Total Bikes", "description": "Bicycle Counter"},
 )
 comparison_fig.add_annotation(
@@ -78,15 +79,9 @@ app.layout = html.Div(
                                     id="bike image",
                                     height="240px",
                                     src="assets/undraw_bike_ride_7xit.png",
-                                    style={
-                                        "border-radius": "30px",
-                                        "display": "block",
-                                        "margin-left": "auto",
-                                        "margin-right": "auto",
-                                    },
                                 ),
                                 html.P("This Bike Traffic Dashboard shows data from bicycle counters in Berlin. \nEach bicycle counter counts the amount of bicycles passing per hour. \nData is accessible starting from 2012, with most data points starting from 2017. \nThis data includes the latest data from 2017 through 2019. \nThe original data can be accessed here.", title="About"),
-                                html.H3("Filter by:", className="filter"),
+                                html.H3("Bicycle Counter", className="filter"),
                                 html.H4("Year:", className="control_label"),
                                 dcc.Dropdown(
                                     id="year-dropdown",
@@ -148,13 +143,7 @@ app.layout = html.Div(
                         html.Div(
                             [
                                 html.H1(
-                                    "Berlin Bike Traffic (2017-2019)",
-                                    style={
-                                        "textAlign": "center",
-                                        "display": "flex",
-                                        "alignItems": "center",
-                                        "justifyContent": "center",
-                                    },
+                                    "BICYCLE COUNTERS IN BERLIN - DASHBOARD",
                                 )
                             ],
                             className="pretty-container",
@@ -220,6 +209,7 @@ app.layout = html.Div(
                 # Dropdowns right
                 html.Div(
                     [
+                        html.H3("Bicycle Counter", className="filter"),
                         html.H4("Street:", className="control_label"),
                         dcc.Dropdown(
                             id="two-direction-station-dropdown",
@@ -331,6 +321,7 @@ def update_fig(year, station, timeframe, radialrange):
     fig.update_layout(
         showlegend=True,
         title=f"Maximum and Median Bikes for {station}",
+        height=500,
         polar=dict(
             radialaxis_tickfont_size=10,
             radialaxis=dict(range=[0, radialrange_dict[radialrange]]),
@@ -358,6 +349,7 @@ def update_fig(year, station, timeframe, radialrange):
         color=stations_list,
         color_discrete_map=color_map,
         orientation="h",
+        height=500,
         labels={"total_bikes": x_label, "description": "Bicycle Counter"},
     )
     comparison_fig.add_annotation(
@@ -371,7 +363,7 @@ def update_fig(year, station, timeframe, radialrange):
         font=dict(family="Arial", size=70, color="black"),
     )
     comparison_fig.update_traces(hovertemplate=f"<b>%{{y}}</b><br><b>Bikes</b>: %{{x:.0f}}<extra></extra>")
-    comparison_fig.update_layout(showlegend=False, font_size=8)
+    comparison_fig.update_layout(showlegend=False, font_size=10)
 
 
     return fig, open(f"folium_maps/{station}.html", "r").read(), comparison_fig

@@ -11,45 +11,59 @@
 }
 
 * {
-  font-family: Roboto;
-  color:var(--h1-color);
+    font-family: Roboto;
+    color:var(--h1-color);
 }
 
 h1 {
-  color: var(--h1-color);
-  font-size:36px;
+    color: var(--h1-color);
+    margin-top: 0.5em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:36px;
 }
 
 h2 {
-  margin-bottom: 1.5em;
+    margin-bottom: 1.5em;
 }
 
 h3 {
-  color: var(--h3-color);
+    color: var(--h3-color);
+    text-align: center;
+    margin-bottom: 0.5em;
 }
 
 h4 {
-  color:var(--h4-color);
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+    color:var(--h4-color);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
 }
 
 h5 {
-  margin-bottom: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+img {
+    border-radius: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 p {
     background-color: #FFFFFF;
     border-radius:  20px;
     margin-top: 1em;
-  margin-bottom: 1em;
+    margin-bottom: 1em;
     padding: 10px;
     position: relative;
     text-align: justify;
 }
 
 .sidebyside {
-  display: flex;
+    display: flex;
 }
 
 .input-line {
@@ -58,36 +72,36 @@ p {
 }
 
 .radio-select {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .radio-select-map {
-  margin-top: 10px;
-  margin-right: 100px;
+    margin-top: 10px;
+    margin-right: 100px;
 }
 
 .radio-select-map2 {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .basic-container {
-  display: flex;
+    display: flex;
 }
 
 .basic-container-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .mini_container {
-  border-radius: 5px;
-  background-color: var(--mini-container-color);
-  margin-top: 20px;
-  margin-bottom: 40px;
-  padding: 15px;
-  position: relative;
-  box-shadow: 2px 2px 2px lightgrey;
+    border-radius: 5px;
+    background-color: var(--mini-container-color);
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 15px;
+    position: relative;
+    box-shadow: 2px 2px 2px lightgrey;
 }
 
 .one.column,
@@ -106,16 +120,16 @@ p {
 
 
  .pretty-container {
-   border-radius: 20px;
-   background-color: var(--pretty-container-color);
-   margin: 10px;
-   padding: 15px;
-   position: relative;
-   box-shadow: 2px 2px 2px lightgrey;
+     border-radius: 20px;
+     background-color: var(--pretty-container-color);
+     margin: 10px;
+     padding: 15px;
+     position: relative;
+     box-shadow: 2px 2px 2px lightgrey;
  }
 
 .filter {
-  margin-bottom: -1em;
+    margin-bottom: -1em;
 }
 
 /* .control_label { */
