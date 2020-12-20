@@ -22,49 +22,17 @@ external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
+# Read in the data and transform
 df = pd.read_csv("berlin_bikedata_2017-2019.csv")
 prepare_dataframe(df)
-barchart_object = Frequency("Week", frequency_dict, "27")
-barchart_df, barchart_title = get_parts_for_barchart(df, barchart_object)
-
 comparison_df = df.set_index("timestamp")
-comparison = ComparisonBetweenStations([2019], "sum")
-agg_comp_df = aggregate(comparison_df, comparison)
-stations_list, color_map = map_colors(agg_comp_df, "Maybachufer")
 
-# Barchart with Total Bikes by year and bicycle counter
-comparison_fig = px.bar(
-    agg_comp_df.reset_index(),
-    x="total_bikes",
-    y="description",
-    color=stations_list,
-    color_discrete_map=color_map,
-    orientation="h",
-    height=500,
-    labels={"total_bikes": "Total Bikes", "description": "Bicycle Counter"},
-)
-comparison_fig.add_annotation(
-    text=f"{comparison.years_string}",
-    xref="paper",
-    yref="paper",
-    x=1,
-    y=-0.05,
-    showarrow=False,
-    opacity=0.1,
-    font=dict(family="Arial", size=70, color="black"),
-)
-
-barchart_fig = px.bar(
-    barchart_df[barchart_df.station_short == barchart_object.location_id],
-    x="timestamp",
-    y="total_bikes",
-    color="description",
-    title=barchart_title,
-)
-barchart_fig.update_traces(hovertemplate=barchart_object.hovertext)
-
+# Create empty figures
+comparison_fig = go.Figure()
+barchart_fig = go.Figure()
 fig = go.Figure()
 
+# Dashboard layout
 app.layout = html.Div(
     [
         # First row
@@ -80,7 +48,7 @@ app.layout = html.Div(
                                     height="240px",
                                     src="assets/undraw_bike_ride_7xit.png",
                                 ),
-                                html.P("This Bike Traffic Dashboard shows data from bicycle counters in Berlin. \nEach bicycle counter counts the amount of bicycles passing per hour. \nData is accessible starting from 2012, with most data points starting from 2017. \nThis data includes the latest data from 2017 through 2019. \nThe original data can be accessed here.", title="About"),
+                                html.P("This Bike Traffic Dashboard shows data from bicycle counters in Berlin. \nEach bicycle counter counts the amount of bicycles passing per hour. \nData is accessible starting from 2012, with most data points starting from 2017. \nThis dashboard includes the latest data from 2017 through 2019. \nThe original data can be accessed here.", title="About"),
                                 html.H3("Bicycle Counter", className="filter"),
                                 html.H4("Year:", className="control_label"),
                                 dcc.Dropdown(
@@ -263,29 +231,11 @@ app.layout = html.Div(
 )
 def update_fig(year, station, timeframe, radialrange):
     """updates polar chart"""
-    df = pd.read_csv("berlin_bikedata_2017-2019.csv")
-    if year != "year":
-        is_year = df["year"].isin(year)
-        complete_df = df[is_year]
-    else:
-        complete_df = df
-    if station != "station":
-        pass
-    else:
-        station = "Maybachufer"
-    if timeframe != "timeframe":
-        pass
-    else:
-        timeframe = "day_name"
-    if radialrange != "radial range":
-        pass
-    else:
-        radialrange = "max"
-
-    CATEGORY = timeframe  # 'hour_str'
-    CAT_SORTERS = {"day_name": "weekday", "hour_str": "hour", "month_name": "month"}
+    is_year = df["year"].isin(year)
+    complete_df = df[is_year]
+    category_sorters = {"day_name": "weekday", "hour_str": "hour", "month_name": "month"}
     df_median, df_max, radialrange_dict, categories = prepare_data_for_polar(
-        complete_df, CATEGORY, CAT_SORTERS, station
+        complete_df, timeframe, category_sorters, station
     )
 
     fig = go.Figure()
@@ -321,6 +271,7 @@ def update_fig(year, station, timeframe, radialrange):
     fig.update_layout(
         showlegend=True,
         title=f"Maximum and Median Bikes for {station}",
+        title_x=0.5,
         height=500,
         polar=dict(
             radialaxis_tickfont_size=10,
@@ -332,6 +283,8 @@ def update_fig(year, station, timeframe, radialrange):
             ),
         ),
     )
+
+    # Prepare data for comparison bar chart
     aggregation_type = "sum"
     x_label = "Total Bikes"
     if radialrange == "median":
@@ -341,7 +294,7 @@ def update_fig(year, station, timeframe, radialrange):
     agg_comp_df = aggregate(comparison_df, comparison)
     stations_list, color_map = map_colors(agg_comp_df, station)
 
-    # Barchart with Total Bikes by year and bicycle counter
+    # Bar chart with total or average bikes by year and bicycle counter
     comparison_fig = px.bar(
         agg_comp_df.reset_index(),
         x="total_bikes",
@@ -363,8 +316,10 @@ def update_fig(year, station, timeframe, radialrange):
         font=dict(family="Arial", size=70, color="black"),
     )
     comparison_fig.update_traces(hovertemplate=f"<b>%{{y}}</b><br><b>Bikes</b>: %{{x:.0f}}<extra></extra>")
-    comparison_fig.update_layout(showlegend=False, font_size=10)
-
+    comparison_fig.update_xaxes(tickfont=dict(size=11))
+    comparison_fig.update_yaxes(tickfont=dict(size=11))
+    comparison_fig.update_layout(showlegend=False, title="All Stations (Total and Average)",
+        title_x=0.5)
 
     return fig, open(f"folium_maps/{station}.html", "r").read(), comparison_fig
 
@@ -416,4 +371,4 @@ def update_barchart_fig(street, frequency):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)

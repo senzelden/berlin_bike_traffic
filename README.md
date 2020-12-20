@@ -1,17 +1,21 @@
 # Project: Berlin Bike Traffic Dashboard
 
+![Berlin Bike Traffic Dashboard GIF](bike_dashboard.gif)
 
 ### Background
 
-The city of Berlin makes a lot of their bicycle data publicly accessible.
+The city of Berlin makes some of their bicycle data publicly accessible.  
+Data for bicycle counters exists starting from 2012, with most data points starting from 2017. 
+This dashboard includes the latest data from 2017 through 2019. 
 
 ### Goal
 
-Build a dashboard on bike traffic in Berlin with pandas, folium and dash
+Build a dashboard on bike traffic in Berlin with pandas, folium and dash.
 
 ### Sources
 
-https://www.berlin.de/sen/uvk/verkehr/verkehrsplanung/radverkehr/weitere-radinfrastruktur/zaehlstellen-und-fahrradbarometer/
+Original data found [here](https://www.berlin.de/sen/uvk/verkehr/verkehrsplanung/radverkehr/weitere-radinfrastruktur/zaehlstellen-und-fahrradbarometer/)  
+Image by [unDraw](https://www.undraw.co)
 
 ### Influenced by
 
@@ -20,15 +24,13 @@ https://lab.technologiestiftung-berlin.de/projects/bikerides/de/
 
 ### To Do
 
-* Better code design (apply code style, add docstrings, put functions in helpers file)
 * Use data from all years
 * put helper functions in packages
-* Update CSS design (colors, paddings, fonts)
 * Add longer explanatory text in README
-* Add notebook with prediction, analyze development during Covid-19
+* Add notebook with prediction, analyze development during Covid-19, when 2020 data goes public
 * Improve loading time (prepare csv file completely beforehand)
 * Add gif to README showing dashboard
 * Improve dropdown design
-* Increase canvas size for comparison bar
-* Explanatory text on left side
 * Station name in the middle
+* Add tests
+* Add CI with github actions
