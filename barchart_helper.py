@@ -8,7 +8,7 @@ class Frequency:
         self.frequency = frequency
         self.frequency_short = frequency_dict["frequency"][frequency]["short"]
         self.d3_format = frequency_dict["frequency"][frequency]["d3_format"]
-        self.location_id = location_id
+        self.location_id = int(location_id)
         self.hovertext = f"<b>{self.frequency}</b>: %{{x|{self.d3_format}}}<br><b>Total Bikes</b>: %{{y}}"
 
 
@@ -23,12 +23,9 @@ def prepare_dataframe(df):
 
 def get_parts_for_barchart(df, barchart_object):
     """returns barchart_df, barchart_title"""
+    # .set_index("timestamp")
     barchart_df = (
-        df.set_index("timestamp")
-        .groupby(["description", "station_short"])[["total_bikes"]]
-        .resample(barchart_object.frequency_short)
-        .sum()
-        .reset_index()
+        df.groupby(["description", "station_short"])[["total_bikes"]].resample(barchart_object.frequency_short).sum().reset_index()
     )
     street_names = " / ".join(
         barchart_df[barchart_df.station_short == barchart_object.location_id][
